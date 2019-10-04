@@ -1,0 +1,63 @@
+import 'index.dart';
+import 'package:flutter/material.dart';
+import 'package:dsckiit11/utils/dsc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ConfigPage extends StatefulWidget {
+  @override
+  _ConfigPageState createState() => _ConfigPageState();
+}
+
+class _ConfigPageState extends State<ConfigPage> {
+  ConfigBloc configBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    setupApp();
+  }
+
+  void setupApp() {
+    configBloc = ConfigBloc();
+    configBloc.darkModeOn =
+        Dsc.prefs.getBool(Dsc.darkModePref) ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      builder: (context) => configBloc,
+      child: BlocBuilder<ConfigBloc, ConfigState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Google Devfest',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              //* Custom Google Font
+              fontFamily: Dsc.google_sans_family,
+              primarySwatch: Colors.red,
+              primaryColor: configBloc.darkModeOn ? Colors.black : Colors.white,
+              disabledColor: Colors.grey,
+              cardColor: configBloc.darkModeOn ? Colors.black : Colors.white,
+              canvasColor:
+              configBloc.darkModeOn ? Colors.black : Colors.grey[50],
+              brightness:
+              configBloc.darkModeOn ? Brightness.dark : Brightness.light,
+              buttonTheme: Theme.of(context).buttonTheme.copyWith(
+                  colorScheme: configBloc.darkModeOn
+                      ? ColorScheme.dark()
+                      : ColorScheme.light()),
+              appBarTheme: AppBarTheme(
+                elevation: 0.0,
+              ),
+            ),
+            home: Scaffold(
+              appBar: AppBar(),
+              body: Container(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
