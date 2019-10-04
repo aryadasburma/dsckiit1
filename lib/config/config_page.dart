@@ -2,6 +2,7 @@ import 'index.dart';
 import 'package:flutter/material.dart';
 import 'package:dsckiit11/utils/dsc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dsckiit11/home/home_page.dart';
 
 class ConfigPage extends StatefulWidget {
   @override
@@ -51,10 +52,7 @@ class _ConfigPageState extends State<ConfigPage> {
                 elevation: 0.0,
               ),
             ),
-            home: Scaffold(
-              appBar: AppBar(),
-              body: Container(),
-            ),
+            home:HomePage(),
           );
         },
       ),
