@@ -1,6 +1,6 @@
 # dsckiit11
 
-A new Flutter application.
+An attempt of Flutter application for DSC KIIT.
 
 ## Getting Started
 
